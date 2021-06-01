@@ -121,21 +121,21 @@
            <tbody >
            <?php
            foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
-               $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
-               $date = $unFraisHorsForfait['date'];
+               $date = htmlspecialchars($unFraisHorsForfait['date']);
+               $libelle =htmlspecialchars( $unFraisHorsForfait['libelle']);
                $montant = $unFraisHorsForfait['montant'];
                $id = $unFraisHorsForfait['id']; ?>       
                 <input type="hidden" name="frais" id="idFrais" size="10" value="<?php echo $id ?>" class="form-control"/>
                <tr >
-                    <td   <select id="idtab" name="tableau hors forfait" class="form-control"></td>
+                  
                    <td style="border-right:1px solid #ff6f02;"><input type="text" name="date" id="idDate" size="10" value="<?php echo $date ?>" class="form-control"/></td>
                    <td style="border-right:1px solid #ff6f02;"><input type="text" name="libelle" id="idLibelle" size="10" value="<?php echo $libelle ?>" class="form-control"/></td>
                    <td style="border-right:1px solid #ff6f02;"><input type="text" name="montant" id="idMontant" size="10" value="<?php echo $montant ?>" class="form-control"/></td>
                    
                    
-                   <td><button class="btn btn-success" type="edit">Corriger</button>
+                   <td><button class="btn btn-success" type="edit"name="corriger">Corriger</button>
                        <button class="btn btn-danger" type="reset">Reinitialiser</button>
-                   <a href="index.php?uc=validerFrais&action=supprimerFrais"  type="reset" class="btn btn-danger" role="button">Supprimer</a></td>
+                   <button  type="submit" class="btn btn-success" role="button"name="reporter">reporter</button></td>
                </tr>
                <?php
            }

@@ -90,6 +90,7 @@ function getMois($date)
     if (strlen($mois) == 1) {// verifie le nb de caracteres
         $mois = '0' . $mois;// ajoute le "0" au mois
     }
+   
     return $annee . $mois;
 }
 
@@ -244,13 +245,20 @@ function nbErreurs()
         return count($_REQUEST['erreurs']);
     }
 }
+/**
+ * Teste si un visiteur est connecté
+ * @return type
+ */
 function estVisiteurConnecte()
 {
    if (estConnecte()){
        return ($_SESSION['statut']== 'visiteur');
    }  
 }
-
+/**
+ * Teste si un comptable est connecté
+ * @return type
+ */
 function estComptableConnecte()
 {
    if (estConnecte()){
@@ -274,7 +282,11 @@ function getMoisPrecedent($mois){
     }   
     return $numAnnee.$numMois;
 }
-
+/**
+ * retourne les douze derniers mois 
+ * @param type $mois
+ * @return type
+ */
 function getLesMois($mois){
    $lesMois=array();
    for($k=0;$k<12;$k++){
@@ -292,3 +304,27 @@ function getLesMois($mois){
 }
   return $lesMois;
 }
+
+/**
+ * Fonction qui retourne le mois suivant un mois passé en paramètre
+ *
+ * @param String $mois Contient le mois à utiliser
+ *
+ * @return String le mois d'après
+ */
+function getMoisSuivant($mois)
+{
+    $numAnnee = substr($mois, 0, 4);
+    $numMois = substr($mois, 4, 2);
+    if ($numMois == '12') {
+        $numMois = '01';
+        $numAnnee++;
+    } else {
+        $numMois++;
+    }
+    if (strlen($numMois) == 1) {
+        $numMois = '0' . $numMois;
+    }
+    return $numAnnee . $numMois;
+}
+

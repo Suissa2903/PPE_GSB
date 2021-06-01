@@ -46,4 +46,6 @@ case 'deconnexion':
     include 'controleurs/c_deconnexion.php';
     break;
 case 'suivrePaiement':
-include 'controleurs/c_suivrePaiement.php';}
+include 'controleurs/c_suivrePaiement.php';
+    break;
+}

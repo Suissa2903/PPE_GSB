@@ -12,6 +12,7 @@
 */
 
 $mois = getMois(date('d/m/Y'));
+
 $moisPrecedent=getMoisPrecedent($mois);
 $pdo->clotureFiche($moisPrecedent);
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);// recupere le contenu de action
@@ -75,6 +76,7 @@ case 'corrigerFrais':
     $laDate = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING);
     $idFrais = filter_input(INPUT_POST, 'frais', FILTER_SANITIZE_NUMBER_INT);
     $leMontant = filter_input(INPUT_POST, 'montant', FILTER_VALIDATE_FLOAT);
+    if(isset($_POST['corriger'])){//bouton est clique post utilistaeur clique 
     valideInfosFrais($laDate, $leLibelle, $leMontant);
     if (nbErreurs() != 0) {
         include 'vues/v_erreurs.php';
@@ -84,11 +86,35 @@ case 'corrigerFrais':
     }
     $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
     $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
-    $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteur, $leMois);
+    $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteur, $leMois);}
+    if (isset($_POST['reporter'])){
+    
+     $pdo->refuserFraisHorsForfait($idFrais);
+     
+     $moisSuivant= getMoisSuivant($leMois);
+     
+
+
+    if ($pdo->estPremierFraisMois($idVisiteur, $moisSuivant)) {
+        $pdo->creeNouvellesLignesFrais($idVisiteur,$moisSuivant);
+    }
+     $pdo->reporterFraisHorsForfait($idFrais,$moisSuivant);   
+
+    ?>
+    <div class="alert alert-info" role="alert">
+        <p>Ce frais hors forfait a bien été reporté au mois suivant!</p>
+    </div>
+     <?php
+    break;
+      
+  
+    }
+    
     include 'vues/v_afficheFrais.php';
     break;
     
 case 'validerFrais':
+   
   $idVisiteur = filter_input(INPUT_POST, 'lstVisiteurs', FILTER_SANITIZE_STRING);
   $lesVisiteurs= $pdo->getLesVisiteurs();
   $visiteurASelectionner= $idVisiteur;
@@ -108,7 +134,7 @@ case 'validerFrais':
   include 'vues/v_listeVisiteur.php';
   break;
 
-case 'supprimerFrais':
+/*case 'supprimerFrais':
    ?>
    <div class="alert alert-info" role="alert">
        <p><h4>Voulez vous reporter ou supprimer le frais?<br></h4><a
@@ -126,25 +152,9 @@ case 'supprimer':
         <p>Ce frais hors forfait a bien été supprimé!</p>
     </div>
     <?php
-    break;
+    break;*/
 
-case 'reporter':
-    $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_NUMBER_INT);
-    $mois = filter_input(INPUT_GET, 'mois', FILTER_SANITIZE_STRING);
-    $moisSuivant= getMoisSuivant($mois);
-    $idVisiteur = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
-
-    if ($pdo->estPremierFraisMois($idVisiteur, $moisSuivant)) {
-        $pdo->creeNouvellesLignesFrais($idVisiteur,$moisSuivant);
-    }
-    $moisAReporter=$pdo->reporterFraisHorsForfait($idFrais,$mois);   
-    
-    ?>
-    <div class="alert alert-info" role="alert">
-        <p>Ce frais hors forfait a bien été reporté au mois suivant!</p>
-    </div>
-     <?php
-    break;
-       
+ 
+      
 }
-   
+    
