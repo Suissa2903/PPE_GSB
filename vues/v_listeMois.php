@@ -3,12 +3,14 @@
  * Vue Liste des mois
  *
  * PHP Version 7
-*
-* @category  PPE
-* @package   GSB
-* @author   Tsivya Suissa
-* @author    Beth Sefer
-*/
+ *
+ * @category  PPE
+ * @package   GSB
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    Anaelle Seneor
+ */
 ?>
 <h2>Mes fiches de frais</h2>
 <div class="row">
@@ -16,16 +18,20 @@
         <h3>Sélectionner un mois : </h3>
     </div>
     <div class="col-md-4">
+      
         <form action="index.php?uc=etatFrais&action=voirEtatFrais" 
               method="post" role="form">
-            <div class="form-group">
+              <div class="form-group">
                 <label for="lstMois" accesskey="n">Mois : </label>
                 <select id="lstMois" name="lstMois" class="form-control">
                     <?php
-                    foreach ($lesMois as $unMois) {//prendre un tableau et decomposer en lignes
-                        $mois = $unMois['mois'];
+                
+                    foreach ($lesMois as $unMois) {
+
+                        $mois = $unMois['mois'];                       
                         $numAnnee = $unMois['numAnnee'];
                         $numMois = $unMois['numMois'];
+                        
                         if ($mois == $moisASelectionner) {
                             ?>
                             <option selected value="<?php echo $mois ?>">
@@ -38,14 +44,14 @@
                             <?php
                         }
                     }
-                    ?>    
-
+                    ?> 
                 </select>
             </div>
-            <input id="ok" type="submit" value="Valider" class="btn btn-success" 
+           <input id="ok" type="submit" value="Valider" class="btn btn-success" 
                    role="button">
             <input id="annuler" type="reset" value="Effacer" class="btn btn-danger" 
                    role="button">
         </form>
+
     </div>
 </div>

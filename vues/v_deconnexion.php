@@ -3,12 +3,12 @@
  * Vue Déconnexion
  *
  * PHP Version 7
-*
+ *
 * @category  PPE
-* @package   GSB
-* @author Tsivya Suissa
-* @author    Beth Sefer
-*/
+ * @package   GSB
+ * @author   Anaelle Seneor
+ * @author    Beth Sefer
+ */
 deconnecter();
 ?>
 <div class="alert alert-info" role="alert">

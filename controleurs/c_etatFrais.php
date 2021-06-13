@@ -3,14 +3,14 @@
  * Gestion de l'affichage des frais
  *
  * PHP Version 7
-*
-* @category  PPE
-* @package   GSB
-* @author   Tsivya Suissa
-* @author    Beth Sefer
-*/
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    Anaelle Seneor
+ * @author    Beth Sefer
+ */
 
-$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);// recupere le contenu de action
+$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 $idVisiteur = $_SESSION['idUtilisateur'];
 switch ($action) {
 case 'selectionnerMois':
@@ -18,12 +18,12 @@ case 'selectionnerMois':
     // Afin de sélectionner par défaut le dernier mois dans la zone de liste
     // on demande toutes les clés, et on prend la première,
     // les mois étant triés décroissants
-    $lesCles = array_keys($lesMois);//tableau de clés
+    $lesCles = array_keys($lesMois);
     $moisASelectionner = $lesCles[0];
     include 'vues/v_listeMois.php';
     break;
 case 'voirEtatFrais':
-    $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_STRING);//on recupere ce qui a été selecionné ds le menu deroulant
+    $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_STRING);
     $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
     $moisASelectionner = $leMois;
     include 'vues/v_listeMois.php';

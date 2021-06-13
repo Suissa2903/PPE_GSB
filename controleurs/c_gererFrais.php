@@ -3,25 +3,26 @@
  * Gestion des frais
  *
  * PHP Version 7
-*
-* @category  PPE
-* @package   GSB
-* @author   Tsivya Suissa
-* @author    Beth Sefer
-*/
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    Anaelle Seneor
+ * @author    Beth Sefer
+ */
 
 $idVisiteur = $_SESSION['idUtilisateur'];
 $mois = getMois(date('d/m/Y'));
-$numAnnee = substr($mois, 0, 4);//recupere les 4 premiers caracteres
-$numMois = substr($mois, 4, 2);// recupere les 2 caracteres a partir du 4è
-$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);// on verifie le contenu de action
+$numAnnee = substr($mois, 0, 4);// permet de recuperer les 4 premiers caracteres
+$numMois = substr($mois, 4, 2);// permet de recuperer a partir du 4eme caractere, les 2 premiers
+$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 switch ($action) {
+case 'saisir matricule' :
 case 'saisirFrais':
     if ($pdo->estPremierFraisMois($idVisiteur, $mois)) {
         $pdo->creeNouvellesLignesFrais($idVisiteur, $mois);
     }
     break;
-case 'validerMajFraisForfait'://verifie si tt a été rempli
+case 'validerMajFraisForfait':
     $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
     if (lesQteFraisValides($lesFrais)) {
         $pdo->majFraisForfait($idVisiteur, $mois, $lesFrais);
@@ -34,6 +35,7 @@ case 'validerCreationFrais':
     $dateFrais = filter_input(INPUT_POST, 'dateFrais', FILTER_SANITIZE_STRING);
     $libelle = filter_input(INPUT_POST, 'libelle', FILTER_SANITIZE_STRING);
     $montant = filter_input(INPUT_POST, 'montant', FILTER_VALIDATE_FLOAT);
+    
     valideInfosFrais($dateFrais, $libelle, $montant);
     if (nbErreurs() != 0) {
         include 'vues/v_erreurs.php';

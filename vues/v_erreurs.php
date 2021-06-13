@@ -3,12 +3,11 @@
  * Vue Erreurs
  *
  * PHP Version 7
-*
-* @category  PPE
-* @package   GSB
-* @author   Tsivya Suissa
-* @author    Beth Sefer
-*/
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    Anaelle Seneor
+ */
 ?>
 <div class="alert alert-danger" role="alert">
     <?php

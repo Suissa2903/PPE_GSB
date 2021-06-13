@@ -3,27 +3,26 @@
  * Index du projet GSB
  *
  * PHP Version 7
-*
-* @category  PPE
-* @package   GSB
-* @author   Tsivya Suissa
-* @author    Beth Sefer
-*/
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    Anaelle Seneor
+ * @author    Beth Sefer
+ */
 
-// ce qu'on a besoin en préliminaire et une seule fois sur la page.
-require_once 'includes/fct.inc.php';// reference au dossier includes page de requete
-require_once 'includes/class.pdogsb.inc.php';
-
-session_start(); // session=variable pouvant contenir plusieurs variables de types differents(variable super global)
-$pdo = PdoGsb::getPdoGsb();//appel de la methode de la classe getpdogsb
-$estConnecte = estConnecte();//appel de la methode de la classe fct.inc,verifie si un client est connecté ds la session et on rentre le return de la fonction
+require_once 'includes/fct.inc.php';//Besoin en préliminaire
+require_once 'includes/class.pdogsb.inc.php';//idem
+session_start(); // Variable Super Globale
+$pdo = PdoGsb::getPdoGsb();
+$estConnecte = estConnecte();
 $estVisiteurConnecte= estVisiteurConnecte();
 $estComptableConnecte= estComptableConnecte();
-require 'vues/v_entete.php';//logo
-$uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
+require 'vues/v_entete.php';//requis
+
+$uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);//on verifie le contenu de uc
 if ($uc && !$estConnecte) {
     $uc = 'connexion';
-} elseif (empty($uc)) {
+} else if (empty($uc)) {
     $uc = 'accueil';
 }
 switch ($uc) {
@@ -39,13 +38,14 @@ case 'gererFrais':
 case 'etatFrais':
     include 'controleurs/c_etatFrais.php';
     break;
-case 'validerFrais':
-    include 'controleurs/c_validerFrais.php';
-    break;
 case 'deconnexion':
     include 'controleurs/c_deconnexion.php';
     break;
+case 'validerFrais':
+    include 'controleurs/c_validerFrais.php';
+    break;
 case 'suivrePaiement':
-include 'controleurs/c_suivrePaiement.php';
+    include 'controleurs/c_suivrePaiement.php';
     break;
 }
+require 'vues/v_pied.php';

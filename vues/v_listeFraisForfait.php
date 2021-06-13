@@ -3,12 +3,12 @@
  * Vue Liste des frais au forfait
  *
  * PHP Version 7
-*
-* @category  PPE
-* @package   GSB
-* @author   Tsivya Suissa
-* @author    Beth Sefer
-*/
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    Anaelle Seneor
+ * @author    Beth Sefer
+ */
 ?>
 <div class="row">    
     <h2>Renseigner ma fiche de frais du mois 

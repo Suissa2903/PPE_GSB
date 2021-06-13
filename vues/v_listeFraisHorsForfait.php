@@ -1,14 +1,15 @@
 <?php
 /**
  * Vue Liste des frais hors forfait
+ /**
+ * Vue etat frais
  *
  * PHP Version 7
-*
-* @category  PPE
-* @package   GSB
-* @author   Tsivya Suissa
-* @author    Beth Sefer
-*/
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    Anaelle Seneor
+ */
 ?>
 <hr>
 <div class="row">

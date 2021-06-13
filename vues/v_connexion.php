@@ -3,12 +3,12 @@
  * Vue Connexion
  *
  * PHP Version 7
-*
+ *
 * @category  PPE
-* @package   GSB
-* @author  Tsivya Suissa
-* @author    Beth Sefer
-*/
+ * @package   GSB
+ * @author   Anaelle Seneor
+ * @author    Beth Sefer
+ */
 ?>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">

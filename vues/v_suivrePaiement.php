@@ -1,36 +1,27 @@
 <?php
+
 /**
- * Vue Liste des visiteurs et des mois
+ * Controleur Valider Frais
  *
  * PHP Version 7
-*
+ *
 * @category  PPE
-* @package   GSB
-* @author   Tsivya Suissa
-* @author    Beth Sefer
-*/
+ * @package   GSB
+ * @author    Anaelle Seneor
+ * @author    Beth Sefer
+ */
 
-$uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);//Verifie le contenu de uc
-if ($uc=='validerFrais'){   
+   
 ?>
-    <h2>Valider les fiches de frais</h2>
-    <div class="row">
-        <div class="col-md-4"><?php //col-md-4 prend 1/4 de la page ?>
-
-            <form action="index.php?uc=validerFrais&action=afficheFrais" 
-                  method="post" role="form">
-<?php
-}else{
-?> 
+    
     <h2>Suivre le paiement des fiches de frais</h2>
     <div class="row">
         <div class="col-md-4"><?php //col-md-4 prend 1/4 de la page ?>
       
             <form action="index.php?uc=suivrePaiement&action=afficheFrais" 
                 method="post" role="form">
-<?php
-}
-?>           
+
+           
              <?php //liste deroulante du visiteur ?>
               <div class="form-group">
                 <label for="lstVisiteurs" accesskey="n">Choisir le visiteur : </label>
@@ -92,9 +83,13 @@ if ($uc=='validerFrais'){
             </div>
            <input id="ok" type="submit" value="Valider" class="btn btn-success" 
                    role="button">
-            <input id="annuler" type="reset" value="Effacer" class="btn btn-danger" 
-                   role="button">
+            <?php echo "Le pourcentage de fiches validées est de ". $pourcentage ?>
+           
         </form>
 
     </div>
 </div>
+
+           
+
+
