@@ -6,7 +6,7 @@
  *
  * @category  PPE
  * @package   GSB
- * @author    Anaelle Seneor
+ * @author    Tsivya Suissa
  */
 
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);//Verifie le contenu de uc

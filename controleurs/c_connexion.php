@@ -6,8 +6,8 @@
  *
  * @category  PPE
  * @package   GSB
- * @author    Anaelle Seneor
- * @author    Yad Mordekhai
+ * @author    Tsivya Suissa
+ * @author    Beth sefer
  */
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);

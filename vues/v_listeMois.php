@@ -9,7 +9,7 @@
  *
  * @category  PPE
  * @package   GSB
- * @author    Anaelle Seneor
+ * @author  Tsivya Suissa
  */
 ?>
 <h2>Mes fiches de frais</h2>
